@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>Meadowlark Travel</title>
+    {{#if showTests}}
+        <!-- подключаем стили Mocha, для отображения результатов -->
+        <link rel="stylesheet" href="/vendor/mocha.css">
+    {{/if}}
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div style="text-align: center;">
+    <header><img src="/img/logo.png" alt="logo"></header>
+    {{{body}}}
+</div>
+{{#if showTests}}
+    <!--в элементе div будут результаты тестов -->
+    <div id = "mocha"></div>
+    <!-- подключаем библиотеку Mocha -->
+    <!-- подключаем библиотеку Chai -->
+    <script src="/vendor/mocha.js"></script>
+    <script src="/vendor/chai.js"></script>
+    <script>
+        //mocha.ui('bdd');
+        mocha.ui('tdd');
+        var assert = chai.assert;
+    </script>
+    <!-- в этом скрипте находятся спеки -->
+    <script src="/resources/public/qa/tests-global.js"></script>
+    <!--script src="/qa/tests-before.js"></script-->
+    {{#if pageTestScript}}
+        <script src="{{pageTestScript}}"></script>
+    {{/if}}
+    <!-- запустить тесты -->
+    <script>mocha.run();</script>
+{{/if}}
+</body>
+</html>
